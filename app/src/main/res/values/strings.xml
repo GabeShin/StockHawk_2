@@ -1,0 +1,49 @@
+<resources xmlns:xliff="http://schemas.android.com/apk/res-auto">
+
+    <string name="app_name">Stock Hawk</string>
+
+    <string name="pref_stocks_initialized_key" translatable="false">initialized</string>
+
+    <string name="pref_sync_status" translatable="false">symbol-status</string>
+
+    <string name="pref_stocks_key" translatable="false">stocks</string>
+
+    <string name="chart_no_data">No data</string>
+
+    <string name="pref_display_mode_title">Display Mode</string>
+    <string name="pref_display_mode_key" translatable="false">displayMode</string>
+    <string name="pref_display_mode_default">@string/pref_display_mode_percentage_key</string>
+
+    <string name="pref_display_mode_absolute_key" translatable="false">absolute</string>
+    <string name="pref_display_mode_percentage_key" translatable="false">percentage</string>
+
+    <string name="default_stocks_yahoo" translatable="false">YHOO</string>
+    <string name="default_stocks_apple" translatable="false">AAPL</string>
+    <string name="default_stocks_microsoft" translatable="false">MSFT</string>
+    <string name="default_stocks_facebook" translatable="false">FB</string>
+
+
+    <string name="action_change_units" translatable="false">@string/pref_display_mode_key</string>
+
+
+    <string name="dialog_title">Add Stock</string>
+    <string name="dialog_hint">Symbol (e.g. GOOG)</string>
+    <string name="dialog_cancel">Cancel</string>
+    <string name="dialog_add">Add</string>
+
+    <string name="error_stock_not_found">Symbol %s is invalid!</string>
+    <string name="error_no_network">No network connectivity!\nWill load stock cursor when the network is available.</string>
+    <string name="error_no_stocks">No stocks added!\nHit the floating action button to add one.</string>
+
+    <string name="toast_stock_added_no_connectivity">Symbol %s added. Will refresh when network available.</string>
+    <string name="toast_no_connectivity">Will refresh when network available.</string>
+    <string name="toast_stock_added_successful">Symbol %s is added!</string>
+
+    <string name="quote_dollar">$ <xliff:g id="quote">%1$s</xliff:g></string>
+    <string name="delta_absolute"><xliff:g id="delta">%1$s</xliff:g>$</string>
+    <string name="delta_percentage"><xliff:g id="delta">%1$s</xliff:g>%%</string>
+
+    <string name="content_description_fab">Add a Stock</string>
+    <string name="content_description_display_button">Change the display setting</string>
+
+</resources>
