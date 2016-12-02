@@ -19,7 +19,9 @@
             android:paddingLeft="@dimen/activity_horizontal_margin"
             android:paddingStart="@dimen/activity_horizontal_margin"
             android:paddingRight="@dimen/activity_horizontal_margin"
-            android:paddingEnd="@dimen/activity_horizontal_margin"/>
+            android:paddingEnd="@dimen/activity_horizontal_margin"
+            android:paddingBottom="48dp"
+            android:clipToPadding="false"/>
 
     </android.support.v4.widget.SwipeRefreshLayout>
 
@@ -27,7 +29,7 @@
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|right"
+        android:layout_gravity="bottom|end|right"
         android:layout_margin="16dp"
         android:onClick="button"
         android:src="@drawable/fab_plus"

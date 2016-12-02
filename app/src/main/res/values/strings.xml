@@ -46,4 +46,6 @@
     <string name="content_description_fab">Add a Stock</string>
     <string name="content_description_display_button">Change the display setting</string>
 
+    <string name="empty_widget_list">No Stock Information Available</string>
+
 </resources>

@@ -41,7 +41,7 @@ import yahoofinance.quotes.stock.StockQuote;
 public final class QuoteSyncJob {
 
     static final int ONE_OFF_ID = 2;
-    private static final String ACTION_DATA_UPDATED = "com.udacity.stockhawk.ACTION_DATA_UPDATED";
+    public static final String ACTION_DATA_UPDATED = "com.udacity.stockhawk.ACTION_DATA_UPDATED";
     private static final int PERIOD = 300000;
     private static final int INITIAL_BACKOFF = 10000;
     private static final int PERIODIC_ID = 1;
@@ -85,16 +85,17 @@ public final class QuoteSyncJob {
                 String symbol = iterator.next();
 
                 Stock stock = quotes.get(symbol);
-                String name = stock.getName();
-                StockQuote quote = stock.getQuote();
 
-                if (quote.getPrice() == null){
+                if (stock == null || stock.getName() == null){
                     // symbol is invalid
                     setSyncStatus(context, STATUS_SYMBOL_INVALID);
                     PrefUtils.removeStock(context, symbol);
 
                 } else {
                     // valid symbol
+                    String name = stock.getName();
+                    StockQuote quote = stock.getQuote();
+
                     float price = quote.getPrice().floatValue();
                     float change = quote.getChange().floatValue();
                     float percentChange = quote.getChangeInPercent().floatValue();
@@ -125,6 +126,10 @@ public final class QuoteSyncJob {
                 }
             }
 
+            // delete pre-existing data
+            context.getContentResolver().delete(Contract.Quote.uri, null, null);
+
+            // bulk insert the new data
             context.getContentResolver()
                     .bulkInsert(
                             Contract.Quote.uri,
@@ -132,6 +137,8 @@ public final class QuoteSyncJob {
 
             Intent dataUpdatedIntent = new Intent(ACTION_DATA_UPDATED);
             context.sendBroadcast(dataUpdatedIntent);
+
+            updateWidgets(context);
 
         } catch (IOException exception) {
             Timber.e(exception, "Error fetching stock quotes");
@@ -141,9 +148,7 @@ public final class QuoteSyncJob {
     private static void schedulePeriodic(Context context) {
         Timber.d("Scheduling a periodic task");
 
-
         JobInfo.Builder builder = new JobInfo.Builder(PERIODIC_ID, new ComponentName(context, QuoteJobService.class));
-
 
         builder.setRequiredNetworkType(JobInfo.NETWORK_TYPE_ANY)
                 .setPeriodic(PERIOD)
@@ -193,4 +198,9 @@ public final class QuoteSyncJob {
         spe.apply();
     }
 
+    private static void updateWidgets(Context context) {
+        // Setting the package ensures that only components in our app will receive the broadcast
+        Intent dataUpdatedIntent = new Intent(ACTION_DATA_UPDATED).setPackage(context.getPackageName());
+        context.sendBroadcast(dataUpdatedIntent);
+    }
 }
