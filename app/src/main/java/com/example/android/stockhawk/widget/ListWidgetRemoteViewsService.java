@@ -94,9 +94,9 @@ public class ListWidgetRemoteViewsService extends RemoteViewsService{
                 String percentage = percentageFormat.format(percentageChange / 100);
 
                 if (percentageChange > 0) {
-                    views.setImageViewResource(R.id.widget_change, R.drawable.percent_change_pill_green);
+                    views.setInt(R.id.widget_change, "setBackgroundResource", R.drawable.percent_change_pill_green);
                 } else {
-                    views.setImageViewResource(R.id.widget_change, R.drawable.percent_change_pill_red);
+                    views.setInt(R.id.widget_change, "setBackgroundResource", R.drawable.percent_change_pill_red);
                 }
 
                 views.setTextViewText(R.id.widget_symbol, symbol);

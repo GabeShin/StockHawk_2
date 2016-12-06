@@ -1,15 +1,12 @@
 package com.example.android.stockhawk.ui;
 
 import android.content.Context;
-import android.content.Intent;
 import android.database.Cursor;
-import android.support.v4.app.ActivityCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.android.stockhawk.data.Contract;
 import com.example.android.stockhawk.data.PrefUtils;
@@ -21,6 +18,7 @@ import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Created by Gabe on 2016-11-24.

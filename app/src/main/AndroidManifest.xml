@@ -28,6 +28,7 @@
         <receiver android:name=".widget.ListWidgetProvider" >
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="com.udacity.stockhawk.ACTION_DATA_UPDATED"/>
             </intent-filter>
             <meta-data android:name="android.appwidget.provider"
                 android:resource="@xml/list_widget_info" />
@@ -36,6 +37,9 @@
         <service
             android:name="com.example.android.stockhawk.sync.QuoteIntentService"
             android:exported="false" />
+
+        <service android:name=".widget.ListWidgetRemoteViewsService"
+            android:permission="android.permission.BIND_REMOTEVIEWS"/>
 
         <provider
             android:name="com.example.android.stockhawk.data.StockProvider"
